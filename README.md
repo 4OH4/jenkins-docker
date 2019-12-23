@@ -2,7 +2,9 @@
 
 
 # jenkins-docker
-Jenkins in a Docker container, with Docker inside
+Jenkins in a Docker container, with Docker inside.
+
+There is a blog post associated with this repository, with more information: [Quickstart CI with Jenkins and Docker-in-Docker](https://medium.com/swlh/quickstart-ci-with-jenkins-and-docker-in-docker-c3f7174ee9ff?source=friends_link&sk=e2038207f7049c9000acc56e86b0442e)
 
 Running Jenkins in Docker makes a lot of sense: its super quick to get going, and you can just expose the ports needed to access via the web interface. But it also makes sense to run your test cases/builds inside Docker as well: its compartmentalised, with full control of the environment inside.
 
