@@ -22,5 +22,5 @@ RUN apt-get update && \
    apt-get clean && \
    usermod -aG docker jenkins
 
-# drop back to the regular jenkins user - good practice
-USER jenkins
+COPY entrypoint.sh /
+ENTRYPOINT /entrypoint.sh
