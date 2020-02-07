@@ -7,7 +7,7 @@ USER root
 
 # Install the latest Docker CE binaries and add user `jenkins` to the docker group
 RUN apt-get update && \
-    apt-get -y install apt-transport-https \
+    apt-get -y --no-install-recommends install apt-transport-https \
       ca-certificates \
       curl \
       gnupg2 \
@@ -18,7 +18,8 @@ RUN apt-get update && \
       $(lsb_release -cs) \
       stable" && \
    apt-get update && \
-   apt-get -y install docker-ce && \
+   apt-get -y --no-install-recommends install docker-ce && \
+   apt-get clean && \
    usermod -aG docker jenkins
 
 # drop back to the regular jenkins user - good practice
