@@ -34,20 +34,3 @@ Alternatively, you can clone this repository, build the image from the Dockerfil
 	    --restart unless-stopped \
 	    jenkins-docker
 
-## Adopting the group id of jenkins user
-
-Inside the container the user `jenkins` is running the main process.
-In order to access the file `/var/run/docker.sock` the user `jenkins` needs to be in the correct group.
-The group is dictated by the group id (gid) of the corresponding group on the host.
-
-The container allows to change the gid of the `docker` group inside the container to match the gid of the host.
-This is done by the environment variable `JENKINS_DOCKER_SOCKET_GID`.
-
-To set the gid to `900` as an example, you can adopt the code from above to
-
-    docker run -it -p 8080:8080 -p 50000:50000 \
-	    -v jenkins_home:/var/jenkins_home \
-	    -v /var/run/docker.sock:/var/run/docker.sock \
-	    -e JENKINS_DOCKER_SOCKET_GID=900
-	    --restart unless-stopped \
-	    4oh4/jenkins-docker
