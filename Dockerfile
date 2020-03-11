@@ -23,4 +23,4 @@ RUN apt-get update && \
    usermod -aG docker jenkins
 
 COPY entrypoint.sh /
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
