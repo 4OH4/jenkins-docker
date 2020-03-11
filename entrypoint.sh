@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if [ -n "$JENKINS_DOCKER_SOCKET_GID" ]; then
-	sed "s@^docker:x:999:@docker:x:$JENKINS_DOCKER_SOCKET_GID:@" -i /etc/group
-fi
+gid=$(stat --printf '%g' /var/run/docker.sock)
+sed "s@^docker:x:999:@docker:x:$gid:@" -i /etc/group
 
-exec su -c "PATH=$PATH /usr/local/bin/jenkins.sh $@" jenkins
+exec su jenkins -c "PATH=$PATH /usr/local/bin/jenkins.sh $@"
